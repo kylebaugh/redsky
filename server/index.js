@@ -4,9 +4,10 @@ const express = require('express')
 const path = require('path')
 const cors = require('cors')
 
-const {SERVER_PORT} = process.env
+// const {SERVER_PORT} = process.env
+const {PORT} = process.env.PORT
 
-const port = process.env.PORT || SERVER_PORT
+// const PORT = process.env.PORT || SERVER_PORT
 
 const app = express()
 
@@ -21,7 +22,7 @@ app.get('/*', function (req, res) {
   res.sendFile(path.join(__dirname, '../build', 'index.html'));
 });
 
-app.listen(port, () => {console.log(`Server connected on port ${port}`)})
+app.listen(PORT, () => {console.log(`Server connected on port ${PORT}`)})
 
 app.get('/seed', ctrl.seed)
 app.get('/getAllUsers', ctrl.getAllUsers)
