@@ -1,11 +1,10 @@
 require('dotenv').config()
 const express = require('express')
 // const session = require('express-session')
-const massive = require('massive')
 const path = require('path')
 const cors = require('cors')
 
-const {SERVER_PORT, SESSION_SECRET, CONNECTION_STRING} = process.env
+const {SERVER_PORT} = process.env
 
 const port = process.env.PORT || SERVER_PORT
 
@@ -16,6 +15,11 @@ const ctrl = require('./controller')
 app.use(express.json())
 app.use(cors())
 
+app.use(express.static(path.resolve(__dirname, "../build")));
+
+app.get('/*', function (req, res) {
+  res.sendFile(path.join(__dirname, '../build', 'index.html'));
+});
 
 app.listen(port, () => {console.log(`Server connected on port ${port}`)})
 
