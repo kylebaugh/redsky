@@ -5,7 +5,7 @@ import Modal from 'react-modal'
 import {ToastContainer, toast} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
 
-// let baseURL = 'http://localhost:4444'
+let baseURL = 'https://red-sky-application.herokuapp.com'
 
 function App() {
   
@@ -28,7 +28,7 @@ function App() {
   }
   
   const toggleDeleteUser = (id) => {
-    axios.get(`/getOneUser/${id}`)
+    axios.get(`${baseURL}/getOneUser/${id}`)
     .then(res => {
       setDeleteFull(res.data)
     })
@@ -39,7 +39,7 @@ function App() {
   }
 
   useEffect(() =>{
-    axios.get(`/seed`)
+    axios.get(`${baseURL}/seed`)
       .then((res) => {
         setUserList([...res.data])
       })
@@ -51,7 +51,7 @@ function App() {
 // GET ONE USER
 
   const getOneUser = (id) => {      
-    axios.get(`/getOneUser/${id}`)
+    axios.get(`${baseURL}/getOneUser/${id}`)
       .then(res => {
         setNewId(res.data.id)
         setFirstName(res.data.first_name)
@@ -75,7 +75,7 @@ function App() {
   }
   
   const addUser = () => {
-    axios.post(`/addUser`, body)
+    axios.post(`${baseURL}/addUser`, body)
       .then(res => {
         console.log(res.data)
         setFirstName('')
@@ -115,7 +115,7 @@ function App() {
       avatar: picUrl
     }
 
-    axios.put(`/editUser/${newId}`, editBody)
+    axios.put(`${baseURL}/editUser/${newId}`, editBody)
       .then(res => {
         setUserList([...res.data])
         toggleEditUser()
