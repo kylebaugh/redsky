@@ -4,10 +4,9 @@ const express = require('express')
 const path = require('path')
 const cors = require('cors')
 
-// const {SERVER_PORT} = process.env
-const {PORT} = process.env.PORT
+const {SERVER_PORT} = process.env
 
-// const PORT = process.env.PORT || SERVER_PORT
+const PORT = process.env.PORT || SERVER_PORT
 
 const app = express()
 
